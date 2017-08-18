@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Rythm.js demo</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100" rel="stylesheet">
+    <style>
+        html{
+            background-color: #B4E0E1;
+            font-family: 'Roboto', sans-serif;
+        }
+        #rythm-title{
+            text-align: center;            
+        }
+        #rythm-bass-demo{
+            margin-Top: 20px;
+            margin-left: 10%;
+        }
+        </style>
+</head>
+<script type="text/javascript" src="https://unpkg.com/rythm.js@2.1.1/rythm.min.js"></script>
+
+<body>
+    <div id="main">
+        <h1 id="rythm-title">Rythm.js Demos</h1>
+        <div style="width:100%;margin-left: 10%;">
+            <button onclick="runDemo()" style="font-family: 'Roboto', sans-serif;width:100px;height:30px;">Run</button>
+        </div>
+
+        <div id="rythm-bass-demo" class="rythm-bass">Rythm-bass</div>
+    </div>
+    <script>
+        function initRythm() {
+            try {
+                var rythm = new Rythm();
+                rythm.setMusic('./media/you and me.mp3');
+                rythm.addRythm('rythm-bass','pulse',0,10);
+                rythm.pulseRatio = 0.1;
+                rythm.start();                   
+            } catch (error) {
+                document.getElementById("rythm-bass-demo").innerText=error;
+            }     
+        }
+        function runDemo(){
+            initRythm();
+        }
+    </script>
+</body>
+
+</html>
