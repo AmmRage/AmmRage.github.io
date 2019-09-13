@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>中国色</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://www.jsviews.com/download/jsrender.min.js"></script>
+    <style>
+        body {
+            background-image: './texture.png';
+            font-family: '楷体';
+            color: darkgray;
+
+        }
+
+        #main-container {
+            padding-left: 5%;
+            padding-right: 5%;
+        }
+
+        .color-container {
+            margin-top: 20px;
+            margin-bottom: 20px;
+            padding: 10px;
+            border-radius: 5px;
+            color: #EEEEEE;
+            font-size: 40px;
+        }
+
+        .color-input {
+            font: inherit;
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+            width: 100px;
+        }
+
+        .color-copy {
+            padding: 10px;
+            border-radius: 5px;
+            color: #EEEEEE;
+            font-size: 20px;
+            float: right;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="header"></div>
+    <h1 style="text-align: center; font-size: 50px;">中国色</h1>
+    <div id="main-container">
+    </div>
+    <div id="footer"></div>
+    <script id="showColorsTemplate" type="text/x-jsrender">
+        {{for colorArr}}
+            <div class="color-container" style="background-color: {{:code}};">
+                    <a>{{:name}}</a>  
+                    <input class="color-input" type="text" id="id{{:name}}" value="{{:code}}" style="color: {{:code}};background-color: {{:code}};font-size: 20px;"></input >  
+                    <button class="color-copy"  style="background-color:{{:code}};"  onclick="copyText('id{{:name}}')">COPY</button>
+            </div>
+        {{/for}}
+    </script>
+    <script>
+        function drawColors() {
+            let colors = [{
+                    'name': '银鱼白	',
+                    'code': '#cdd1d3'
+                },
+                {
+                    'name': '月影白	',
+                    'code': '#c0c4c3'
+                },
+                {
+                    'name': '脂白色	',
+                    'code': '#FCFCF2'
+                },
+                {
+                    'name': '琥珀色	',
+                    'code': '#C36525'
+                },
+                {
+                    'name': '紫檀色	',
+                    'code': '#4D221B'
+                },
+                {
+                    'name': '黄栌色	',
+                    'code': '#E29C46'
+                },
+                {
+                    'name': '玄色	',
+                    'code': '#380808'
+                },
+                {
+                    'name': '鸦青色	',
+                    'code': '#434C51'
+                },
+                {
+                    'name': '墨色	',
+                    'code': '#4E606C'
+                },
+                {
+                    'name': '满江红	',
+                    'code': '#a7535a'
+                },
+                {
+                    'name': '胭脂	',
+                    'code': '#f03f24'
+                },
+                {
+                    'name': '十样锦	',
+                    'code': '#F3ACA8'
+                },
+                {
+                    'name': '萱草色	',
+                    'code': '#F5A101'
+                },
+                {
+                    'name': '杏林色	',
+                    'code': '#F7B777'
+                },
+                {
+                    'name': '鹅黄	',
+                    'code': '#CB9126'
+                },
+                {
+                    'name': '淡松烟	',
+                    'code': '#4d4030'
+                },
+                {
+                    'name': '百草霜	',
+                    'code': '#303030'
+                },
+                {
+                    'name': '暮云灰	',
+                    'code': '#4F383E'
+                },
+                {
+                    'name': '景泰蓝	',
+                    'code': '#2775b6'
+                },
+                {
+                    'name': '青花蓝	',
+                    'code': '#2B5390'
+                },
+                {
+                    'name': '天青色	',
+                    'code': '#3DBEE6'
+                },
+                {
+                    'name': '梅子青	',
+                    'code': '#A8B7A0'
+                },
+                {
+                    'name': '古铜绿	',
+                    'code': '#533c1b'
+                },
+                {
+                    'name': '天水碧	',
+                    'code': '#7CB8AC'
+                },
+                {
+                    'name': '丁香色	',
+                    'code': '#C1A1CA'
+                },
+                {
+                    'name': '藕荷色	',
+                    'code': '#E0C5CE'
+                },
+                {
+                    'name': '紫藤色	',
+                    'code': '#C8BCCA'
+                }
+            ];
+
+            let data = {
+                "colorArr": colors
+            };
+            var template = $.templates("#showColorsTemplate");
+            var htmlOutput = template.render(data);
+            $("#main-container").html(htmlOutput);
+        }
+
+        function copyText(elementId) {
+            var element = document.getElementById(elementId);
+            element.select();
+            element.setSelectionRange(0, 99999); 
+            document.execCommand("copy");
+            alert("Copied the text: " + element.value);
+        }
+
+        drawColors();    </script>
+</body>
+
+</html>
